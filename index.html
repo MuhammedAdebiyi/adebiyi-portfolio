@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adebiyi — Software Engineer</title>
+<meta name="description" content="Adebiyi, software engineer and founder of CourseVault. Full-stack development, infrastructure, and AI pipelines." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#FFFFFF',
+          ink: '#15131B',
+          violet: '#6D28D9',
+          coral: '#FF6452',
+          teal: '#0E9F84',
+          yellow: '#FFC83D',
+          fog: '#F6F5F2',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['"Inter"', 'sans-serif'],
+          hand: ['"Caveat"', 'cursive'],
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background:#FFFFFF; color:#15131B; }
+  h1,h2,h3, .display { font-family: 'Space Grotesk', sans-serif; }
+  .hand { font-family: 'Caveat', cursive; }
+
+  .highlight {
+    background-image: linear-gradient(120deg, rgba(255,200,61,0.65) 0%, rgba(255,200,61,0.65) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 38%;
+    background-position: 0 75%;
+    padding: 0 1px;
+  }
+  .highlight-teal {
+    background-image: linear-gradient(120deg, rgba(14,159,132,0.28) 0%, rgba(14,159,132,0.28) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 38%;
+    background-position: 0 75%;
+    padding: 0 1px;
+  }
+
+  .sticky-note {
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  }
+
+  .torn {
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tilt-card {
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .tilt-card:hover {
+    transform: translateY(-6px) rotate(-0.6deg);
+    box-shadow: 0 22px 40px -18px rgba(21,19,27,0.25);
+  }
+
+  .pin {
+    width: 14px; height: 14px; border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25), inset 0 -2px 2px rgba(0,0,0,0.15);
+  }
+
+  .grain {
+    background-image: radial-gradient(rgba(21,19,27,0.06) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .tilt-card { transition: none !important; transform: none !important; opacity: 1 !important; }
+  }
+
+  ::selection { background: #FFC83D; color: #15131B; }
+</style>
+</head>
+
+<body class="bg-white text-ink antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 w-full">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-5">
+    <nav class="flex items-center justify-between gap-3 bg-white/80 backdrop-blur-md border border-ink/10 rounded-full px-4 sm:px-5 py-2.5 shadow-sm">
+      <a href="#home" class="font-display font-extrabold text-lg tracking-tight">MA<span class="text-violet">.</span></a>
+
+      <div class="hidden sm:flex items-center gap-1 text-sm font-medium text-ink/70">
+        <a href="#about" class="px-3 py-1.5 rounded-full hover:bg-fog hover:text-ink transition">About</a>
+        <a href="#story" class="px-3 py-1.5 rounded-full hover:bg-fog hover:text-ink transition">The Build</a>
+        <a href="#project" class="px-3 py-1.5 rounded-full hover:bg-fog hover:text-ink transition">Project</a>
+        <a href="#stack" class="px-3 py-1.5 rounded-full hover:bg-fog hover:text-ink transition">Stack</a>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <a href="https://github.com/MuhammedAdebiyi" target="_blank" rel="noopener" aria-label="GitHub" class="w-9 h-9 grid place-items-center rounded-full hover:bg-fog transition">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.21.66.79.55A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+        <a href="https://x.com/adebiyicancode" target="_blank" rel="noopener" aria-label="X" class="w-9 h-9 grid place-items-center rounded-full hover:bg-fog transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.4l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.5h7.59l5.24 6.93L18.9 1.5zm-1.3 18.8h2.04L6.5 3.6H4.3l13.3 16.7z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/muhammed-adebiyi-bba130286" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-9 h-9 grid place-items-center rounded-full hover:bg-fog transition">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a href="mailto:adebiyi@coursevaultai.app" class="ml-1 bg-ink text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-violet transition whitespace-nowrap">Say hi</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-20 overflow-hidden">
+  <div class="absolute -top-10 -left-16 w-72 h-72 bg-violet/15 rounded-full blur-3xl"></div>
+  <div class="absolute top-20 right-0 w-64 h-64 bg-coral/15 rounded-full blur-3xl"></div>
+
+  <div class="relative grid sm:grid-cols-[1fr_auto] gap-12 items-center">
+    <div>
+      <p class="hand text-2xl text-violet mb-1">currently building things at 2am —</p>
+      <h1 class="font-display font-extrabold text-[2.6rem] leading-[1.05] sm:text-6xl sm:leading-[1.04]">
+        Hey, I'm Adebiyi.<br>
+        <span class="highlight">Software Engineer</span>.
+      </h1>
+      <p class="mt-6 text-lg text-ink/70 max-w-xl leading-relaxed">
+        I build full-stack products end to end  frontend, backend, infrastructure,
+        and lately, the AI pipelines that tie it all together. Currently founder &amp;
+        CEO of <span class="font-semibold text-ink">CourseVault</span>, an AI-powered study platform.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#project" class="bg-ink text-white px-5 py-3 rounded-full text-sm font-semibold hover:bg-violet transition">See what I'm building</a>
+        <a href="#contact" class="border border-ink/20 px-5 py-3 rounded-full text-sm font-semibold hover:bg-fog transition">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="relative w-56 h-56 sm:w-72 sm:h-72 mx-auto shrink-0">
+      <div class="absolute -inset-[5px] rounded-full bg-gradient-to-br from-violet via-coral to-yellow opacity-90"></div>
+      <div class="absolute inset-0 rounded-full overflow-hidden ring-[6px] ring-white shadow-xl">
+        <img src="profile.jpeg" alt="Adebiyi" class="w-full h-full object-cover" style="object-position: 78% 68%;">
+        <div class="absolute inset-0 bg-gradient-to-tr from-violet/30 via-transparent to-coral/25 mix-blend-soft-light"></div>
+        <div class="absolute inset-0 bg-yellow/5 mix-blend-overlay"></div>
+      </div>
+
+      <div class="hand absolute -left-10 top-2 bg-yellow/90 text-ink text-sm font-semibold px-3 py-1.5 sticky-note rotate-[-8deg] shadow-md hidden sm:block">React &amp; Next.js</div>
+      <div class="hand absolute -right-12 bottom-10 bg-teal/90 text-white text-sm font-semibold px-3 py-1.5 sticky-note rotate-[6deg] shadow-md hidden sm:block">C# &amp; .NET</div>
+      <div class="hand absolute left-1/2 -translate-x-1/2 -bottom-7 bg-coral/90 text-white text-sm font-semibold px-3 py-1.5 sticky-note rotate-[-3deg] shadow-md whitespace-nowrap hidden sm:block">learning AI/ML</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+  <div class="reveal grid sm:grid-cols-[1fr_1fr] gap-12 items-start">
+    <div>
+      <p class="hand text-xl text-coral mb-1">a little about me</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mb-5">Solo dev, full stack, by necessity.</h2>
+      <p class="text-ink/70 leading-relaxed mb-4">
+        I write JavaScript, React and Next.js on the frontend, and reach for Python
+        or C#/.NET when I'm deep in backend and infrastructure work. Most days that
+        means moving between a Next.js dashboard, an ASP.NET Core API, and a Python
+        worker queue in the same afternoon.
+      </p>
+      <p class="text-ink/70 leading-relaxed">
+        Right now I'm <span class="highlight-teal">levelling up in AI/ML</span> 
+        not as a buzzword, but because CourseVault's whole reason for existing is
+        routing real coursework through language models well, and that only gets
+        better the more I understand what's happening under the hood.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-3 sm:gap-4">
+      <div class="tilt-card torn bg-fog border border-ink/10 p-4 sm:p-5 rotate-[-1.5deg]">
+        <p class="font-display font-extrabold text-3xl sm:text-4xl text-violet">6+</p>
+        <p class="text-xs sm:text-sm text-ink/60 mt-1">languages &amp; frameworks in active use</p>
+      </div>
+      <div class="tilt-card torn bg-fog border border-ink/10 p-4 sm:p-5 rotate-[1deg] mt-4">
+        <p class="font-display font-extrabold text-3xl sm:text-4xl text-coral">5</p>
+        <p class="text-xs sm:text-sm text-ink/60 mt-1">AI providers routed in production</p>
+      </div>
+      <div class="tilt-card torn bg-fog border border-ink/10 p-4 sm:p-5 rotate-[-1deg]">
+        <p class="font-display font-extrabold text-3xl sm:text-4xl text-teal">1</p>
+        <p class="text-xs sm:text-sm text-ink/60 mt-1">person running the entire stack</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE BUILD STORY -->
+<section id="story" class="bg-fog py-16 sm:py-24">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8">
+    <div class="reveal text-center mb-10">
+      <p class="hand text-xl text-violet mb-1">the story so far</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl">How CourseVault got built.</h2>
+    </div>
+
+    <div class="reveal bg-white torn border border-ink/10 shadow-[0_2px_0_rgba(21,19,27,0.06)] p-6 sm:p-10 space-y-5 text-ink/80 leading-relaxed">
+      <p>
+        It started from a simple, annoying problem: students drowning in PDFs, slides
+        and lecture notes, with no fast way to turn that mess into something they could
+        actually study from. CourseVault was my answer an AI study platform that takes
+        whatever you upload and turns it into structured, usable knowledge.
+      </p>
+      <p>
+        Under the hood it's a <span class="highlight">Next.js frontend</span>, a
+        <span class="highlight"> .NET API</span>, and a <span class="highlight">Python worker fleet</span>
+        talking over RabbitMQ. Every upload moves through a five-stage pipeline 
+        hash check, extraction, chunking, AI routing, knowledge asset creation 
+        and gets routed to whichever model handles that subject best: Gemini for
+        humanities and medicine, DeepSeek for STEM, with Groq, OpenAI and Grok in
+        the rotation too. Postgres holds the data, Redis handles caching and
+        real-time state, R2 stores the files, and SignalR pushes live progress
+        and powers collaborative study rooms.
+      </p>
+      <p>
+        It hasn't been quiet. I've fought a production server that fell over from
+        OOM on a 1GB box, a Redis connection silently broken by hairpin NAT,
+        race conditions between RabbitMQ and Postgres, and Vercel quietly killing
+        long-lived connections  which is why file processing now polls instead
+        of streaming. Most of those fires got put out at night, alone, with a
+        terminal and too much coffee.
+      </p>
+      <p>
+        CourseVault now runs on its own Hetzner box, and I'm still the only one
+        shipping it frontend, backend, infra, and the AI pipeline in between.
+        It's slower than having a team, but every part of the system is something
+        I understand completely, which has turned out to be its own kind of fast.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT -->
+<section id="project" class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+  <div class="reveal mb-10">
+    <p class="hand text-xl text-coral mb-1">here's what I've been up to</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl">Featured project</h2>
+  </div>
+
+  <div class="reveal tilt-card grid sm:grid-cols-[1.1fr_1fr] gap-0 rounded-2xl overflow-hidden border border-ink/10 shadow-sm">
+    <div class="bg-gradient-to-br from-violet via-[#4C1D95] to-ink p-8 sm:p-10 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+      <div class="absolute -bottom-16 -right-16 w-56 h-56 bg-coral/30 rounded-full blur-3xl"></div>
+      <div class="relative">
+        
+        <div class="inline-flex items-center bg-white rounded-2xl px-3 py-2 shadow-lg rotate-[-2deg] mb-5">
+          <img src="coursevault-logo.png" alt="CourseVault logo" class="h-7 sm:h-8 w-auto">
+        </div>
+        <span class="hand text-yellow text-2xl block">study, smarter —</span>
+        <h3 class="font-display font-extrabold text-white text-3xl sm:text-4xl mt-1 leading-tight">CourseVault</h3>
+      </div>
+      <p class="relative text-white/70 text-sm mt-6">AI-powered study platform · founded Dec 2025</p>
+    </div>
+
+    <div class="bg-white p-8 sm:p-10">
+      <p class="text-ink/70 leading-relaxed mb-6">
+        Turns lecture material into structured, study-ready knowledge — with
+        subject-aware AI routing and real-time collaborative study rooms.
+      </p>
+      <ul class="space-y-3 mb-6">
+        <li class="flex gap-3 text-sm text-ink/80"><span class="text-teal font-bold">✓</span> Five-stage knowledge pipeline, from raw upload to structured asset</li>
+        <li class="flex gap-3 text-sm text-ink/80"><span class="text-teal font-bold">✓</span> Multi-provider AI routing across 5 LLMs by subject</li>
+        <li class="flex gap-3 text-sm text-ink/80"><span class="text-teal font-bold">✓</span> Real-time collaborative study rooms over SignalR</li>
+        <li class="flex gap-3 text-sm text-ink/80"><span class="text-teal font-bold">✓</span> Self-hosted infra: Hetzner, Postgres, Redis, RabbitMQ, R2</li>
+      </ul>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-fog border border-ink/10">Next.js</span>
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-fog border border-ink/10">.NET</span>
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-fog border border-ink/10">Python</span>
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-fog border border-ink/10">PostgreSQL</span>
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-fog border border-ink/10">Redis</span>
+      </div>
+      <a href="https://coursevaultai.app" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-ink text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-violet transition">
+        View site
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack" class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+  <div class="reveal text-center mb-10">
+    <p class="hand text-xl text-teal mb-1">what I reach for</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl">The toolkit.</h2>
+  </div>
+
+  <div class="reveal flex flex-wrap justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
+    <span class="px-4 py-2 rounded-full bg-violet/10 text-violet font-semibold text-sm rotate-[-2deg]">JavaScript</span>
+    <span class="px-4 py-2 rounded-full bg-coral/10 text-coral font-semibold text-sm rotate-[1.5deg]">React</span>
+    <span class="px-4 py-2 rounded-full bg-teal/10 text-teal font-semibold text-sm rotate-[-1deg]">Next.js</span>
+    <span class="px-4 py-2 rounded-full bg-yellow/20 text-ink font-semibold text-sm rotate-[2deg]">HTML &amp; Tailwind</span>
+    <span class="px-4 py-2 rounded-full bg-violet/10 text-violet font-semibold text-sm rotate-[1deg]">Python</span>
+    <span class="px-4 py-2 rounded-full bg-coral/10 text-coral font-semibold text-sm rotate-[-1.5deg]">C#</span>
+    <span class="px-4 py-2 rounded-full bg-teal/10 text-teal font-semibold text-sm rotate-[1deg]">ASP.NET Core</span>
+    <span class="px-4 py-2 rounded-full bg-yellow/20 text-ink font-semibold text-sm rotate-[-1deg]">PostgreSQL</span>
+    <span class="px-4 py-2 rounded-full bg-violet/10 text-violet font-semibold text-sm rotate-[2deg]">Redis</span>
+    <span class="px-4 py-2 rounded-full border-2 border-dashed border-ink/30 text-ink/70 font-semibold text-sm rotate-[-1.5deg]">AI / ML — levelling up</span>
+  </div>
+</section>
+
+<!-- ROLE -->
+<section class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+  <div class="reveal tilt-card relative bg-white torn border border-ink/10 shadow-[0_8px_24px_-12px_rgba(21,19,27,0.25)] p-7 sm:p-9 rotate-[-0.6deg]">
+    <div class="pin bg-coral absolute -top-2 left-8"></div>
+    <p class="hand text-xl text-coral mb-1">currently</p>
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <h3 class="font-display font-bold text-2xl sm:text-3xl">Founder &amp; CEO, CourseVault</h3>
+      <span class="text-sm text-ink/50 font-medium">Dec 2025 — Present</span>
+    </div>
+    <p class="text-ink/70 mt-3 leading-relaxed">
+      Solely responsible for the product, frontend, backend, infrastructure and AI
+      pipeline — from the first commit to the production fires that come with
+      running it for real users.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-ink text-white py-16 sm:py-24 mt-8 relative overflow-hidden">
+  <div class="absolute -top-20 -left-20 w-72 h-72 bg-violet/30 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-24 right-0 w-80 h-80 bg-coral/20 rounded-full blur-3xl"></div>
+
+  <div class="reveal relative max-w-3xl mx-auto px-5 sm:px-8 text-center">
+    <p class="hand text-2xl text-yellow mb-2">let's talk —</p>
+    <h2 class="font-display font-bold text-3xl sm:text-5xl mb-5">Got something to build?</h2>
+    <p class="text-white/70 max-w-xl mx-auto mb-10 leading-relaxed">
+      Open to opportunities, collaborations, or just talking shop about AI
+      pipelines and infrastructure fires. My inbox is open.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="mailto:adebiyi@coursevaultai.app" class="bg-white text-ink px-5 py-3 rounded-full text-sm font-semibold hover:bg-yellow transition">adebiyi@coursevaultai.app</a>
+      <a href="https://github.com/MuhammedAdebiyi" target="_blank" rel="noopener" class="border border-white/25 px-5 py-3 rounded-full text-sm font-semibold hover:bg-white/10 transition">GitHub</a>
+      <a href="https://x.com/adebiyicancode" target="_blank" rel="noopener" class="border border-white/25 px-5 py-3 rounded-full text-sm font-semibold hover:bg-white/10 transition">X / Twitter</a>
+      <a href="https://www.linkedin.com/in/muhammed-adebiyi-bba130286" target="_blank" rel="noopener" class="border border-white/25 px-5 py-3 rounded-full text-sm font-semibold hover:bg-white/10 transition">LinkedIn</a>
+    </div>
+
+    <div class="relative max-w-xl mx-auto mt-14 text-left">
+      <div class="hand absolute -top-4 left-7 z-10 bg-yellow text-ink text-sm font-semibold px-3 py-1 sticky-note rotate-[-4deg] shadow-md">drop a note ✎</div>
+      <form action="mailto:adebiyi@coursevaultai.app" method="POST" enctype="text/plain" class="bg-white rounded-3xl p-6 sm:p-8 pt-8 shadow-2xl space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <input type="text" name="Name" placeholder="Full name" required
+            class="w-full bg-fog text-ink placeholder-ink/40 border border-ink/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-violet">
+          <input type="email" name="Email" placeholder="Email address" required
+            class="w-full bg-fog text-ink placeholder-ink/40 border border-ink/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-violet">
+        </div>
+        <textarea name="Message" rows="4" placeholder="What are you building?" required
+          class="w-full bg-fog text-ink placeholder-ink/40 border border-ink/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-violet resize-none"></textarea>
+        <button type="submit"
+          class="w-full bg-ink text-white font-semibold text-sm py-3.5 rounded-xl hover:bg-violet transition flex items-center justify-center gap-2">
+          Send message
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+      <p class="text-xs text-white/40 mt-3 text-center">Opens straight in your email app, addressed to me.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="py-8 text-center text-ink/40 text-sm">
+  © 2026 Adebiyi · Built with HTML, Tailwind &amp; late nights.
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
