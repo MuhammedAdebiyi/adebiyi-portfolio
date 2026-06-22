@@ -140,7 +140,7 @@
     <div>
       <p class="hand text-2xl text-violet mb-1">currently building things at 2am —</p>
       <h1 class="font-display font-extrabold text-[2.6rem] leading-[1.05] sm:text-6xl sm:leading-[1.04]">
-        Hey, I'm Adebiyi.<br>
+        hey, i'm adebiyiiii.<br>
         <span class="highlight">Software Engineer</span>.
       </h1>
       <p class="mt-6 text-lg text-ink/70 max-w-xl leading-relaxed">
@@ -441,7 +441,6 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
-  // GitHub activity — live from the public API, fails gracefully
   (async () => {
     const USERNAME = 'MuhammedAdebiyi';
     const REPO = 'CourseVault-v0.001';
@@ -453,7 +452,7 @@
         document.getElementById('gh-repos').textContent = user.public_repos ?? '—';
         document.getElementById('gh-followers').textContent = user.followers ?? '—';
       }
-    } catch (e) { /* offline or rate-limited — leave placeholder */ }
+    } catch (e) {}
 
     try {
       const commitRes = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/commits?per_page=1`);
@@ -471,7 +470,7 @@
         el.classList.add('text-lg');
         el.innerHTML = ' Private repo';
       }
-    } catch (e) { /* leave placeholder */ }
+    } catch (e) {}
   })();
 </script>
 
